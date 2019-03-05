@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
 @Configuration
-class RestTemplateConfiguration {
+public class RestTemplateConfiguration {
 
     @Bean
     RestTemplate restTemplate(@Value("${application.greeter-service.url}") String baseUrl) {
