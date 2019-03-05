@@ -22,3 +22,7 @@ spring:
       time-to-live: PT1H
   redis:
     host: ${REDIS_HOST}
+
+application:
+  greeter-service:
+    url: ${GREETER_URL}

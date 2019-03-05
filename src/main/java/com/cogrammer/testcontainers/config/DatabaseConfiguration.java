@@ -12,11 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-public class DatabaseConfiguration {
+class DatabaseConfiguration {
 
     @Bean
     @Profile("development")
-    public InitializingBean populateDatabase(ProductRepository repository) {
+    InitializingBean populateDatabase(ProductRepository repository) {
         return () -> {
             final List<Product> products = Arrays.asList(
                     Product.of("Apple", "iPhone XS Space Gray 64GB", BigDecimal.valueOf(999)),

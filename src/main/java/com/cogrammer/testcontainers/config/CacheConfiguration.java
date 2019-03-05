@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 @EnableCaching
 @Configuration
-public class CacheConfiguration {
+class CacheConfiguration {
 
     @Primary
     @Bean
-    public CacheManager productsListCacheManager(RedisConnectionFactory redisConnectionFactory, ObjectMapper mapper) {
+    CacheManager productsListCacheManager(RedisConnectionFactory redisConnectionFactory, ObjectMapper mapper) {
         final CollectionType type = mapper.getTypeFactory().constructCollectionType(ArrayList.class, Product.class);
         final SerializationPair<Object> serializer = SerializationPair.fromSerializer(new Jackson2JsonRedisSerializer<>(type));
         final RedisCacheConfiguration cacheConfig = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(serializer);

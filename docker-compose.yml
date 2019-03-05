@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  product-catalog-service:
+  test-containers-service:
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -10,6 +10,7 @@ services:
     depends_on:
       - redis-cache
       - postgres-db
+      - greeter-service
     environment:
       JAVA_OPTS: -server -Xms32m -Xmx128m -Xss256K -Dsun.net.inetaddr.ttl=60
       DB_HOST: postgres-db
@@ -18,9 +19,10 @@ services:
       DB_PASSWORD: cXbGqdMQ4/jy2
       DB_NAME: product-catalog
       REDIS_HOST: redis-cache
+      GREETER_URL: http://greeter-service:5050/
       PROFILE: development
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://product-catalog-service:9081/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://test-containers-service:9081/actuator/health"]
       interval: 10s
       timeout: 10s
       retries: 5
@@ -42,3 +44,8 @@ services:
     environment:
       - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
       - ALLOW_EMPTY_PASSWORD=yes
+
+  greeter-service:
+    image: "vad1mo/hello-world-rest"
+    ports:
+      - "5050:5050"
