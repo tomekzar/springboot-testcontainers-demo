@@ -38,7 +38,7 @@ services:
       POSTGRES_DB: product-catalog
 
   redis-cache:
-    image: "bitnami/redis:latest"
+    image: "redis:5.0.3-alpine"
     ports:
       - "6379:6379"
     environment:

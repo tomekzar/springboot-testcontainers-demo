@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 @EnableCaching
 @Configuration
-class CacheConfiguration {
+public class CacheConfiguration {
 
     @Primary
     @Bean
